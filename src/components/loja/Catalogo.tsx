@@ -1,8 +1,11 @@
-import produtos from "@/data/constants/produtos";
 import Area from "../template/Area";
 import ProdutoCard from "./ProdutoCard";
+import { useContext } from "react";
+import CatalogoContext from "@/context/CatalogoContext";
 
 export default function Catalogo() {
+    const { produtos } = useContext(CatalogoContext)
+
     function renderizarProdutos() {
         return produtos.map(prod => {
             return <ProdutoCard key={prod.id} produto={prod} />
@@ -11,7 +14,9 @@ export default function Catalogo() {
 
     return (
         <Area titulo="Catálogo" cor="purple">
-            {renderizarProdutos()}
+            <div className="flex justify-around flex-wrap gap-4">
+                {renderizarProdutos()}
+            </div>
         </Area>
     )
 }
